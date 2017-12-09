@@ -32,9 +32,9 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://localhost:5432/jsmartbot
-        username: jsmartbot
-        password:
+        url: jdbc:postgresql://postgresql-jsmartbot:5432/jsmartbot?connectTimeout=120&currentSchema=bot,public"
+        username: galandor
+        password: qwerty
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL
