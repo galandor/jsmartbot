@@ -1,0 +1,19 @@
+version: '2'
+services:
+    jsmartbot-app:
+        image: jsmartbot
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://jsmartbot-postgresql:5432/jsmartbot
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=jsmartbot-elasticsearch:9300
+        ports:
+            - 8080:8080
+    jsmartbot-postgresql:
+        extends:
+            file: postgresql.yml
+            service: jsmartbot-postgresql
+    jsmartbot-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: jsmartbot-elasticsearch
