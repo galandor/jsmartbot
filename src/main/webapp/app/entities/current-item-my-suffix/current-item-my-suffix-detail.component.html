@@ -1,0 +1,40 @@
+
+<div *ngIf="currentItem">
+    <h2><span jhiTranslate="jsmartbotApp.currentItem.detail.title">Current Item</span> {{currentItem.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jsmartbotApp.currentItem.userId">User Id</span></dt>
+        <dd>
+            <span>{{currentItem.userId}}</span>
+        </dd>
+        <dt><span jhiTranslate="jsmartbotApp.currentItem.createdAt">Created At</span></dt>
+        <dd>
+            <span>{{currentItem.createdAt | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="jsmartbotApp.currentItem.updatedAt">Updated At</span></dt>
+        <dd>
+            <span>{{currentItem.updatedAt | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="jsmartbotApp.currentItem.itemId">Item Id</span></dt>
+        <dd>
+            <div *ngIf="currentItem.itemIdId">
+                <a [routerLink]="['/item-my-suffix', currentItem.itemIdId]">{{currentItem.itemIdId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'current-item-my-suffix/'+ currentItem.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

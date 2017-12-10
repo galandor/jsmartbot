@@ -1,0 +1,25 @@
+{
+    "jsmartbotApp": {
+        "currentItem" : {
+            "home": {
+                "title": "Current Items",
+                "createLabel": "Создать новый Current Item",
+                "createOrEditLabel": "Создать или отредактировать Current Item",
+                "search": "Найти Current Item"
+            },
+            "created": "Новый Current Item создан с идентификатором {{ param }}",
+            "updated": "Current Item обновлен с идентификатором {{ param }}",
+            "deleted": "Current Item удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Current Item {{ id }}?"
+            },
+            "detail": {
+                "title": "Current Item"
+            },
+            "userId": "User Id",
+            "createdAt": "Created At",
+            "updatedAt": "Updated At",
+            "itemId": "Item Id"
+        }
+    }
+}

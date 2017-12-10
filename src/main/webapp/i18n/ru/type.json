@@ -1,0 +1,11 @@
+{
+    "jsmartbotApp": {
+        "Type" : {
+            "null": "",
+            "QUESTION": "QUESTION",
+            "ANSWER": "ANSWER",
+            "MESSAGE": "MESSAGE",
+            "INPUT": "INPUT"
+        }
+    }
+}

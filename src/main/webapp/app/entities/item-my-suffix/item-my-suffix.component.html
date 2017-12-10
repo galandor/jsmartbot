@@ -1,0 +1,91 @@
+<div>
+    <h2>
+        <span jhiTranslate="jsmartbotApp.item.home.title">Items</span>
+        <button class="btn btn-primary float-right jh-create-entity create-item-my-suffix" [routerLink]="['/', { outlets: { popup: ['item-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="jsmartbotApp.item.home.createLabel">
+            Create new Item
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'jsmartbotApp.item.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="items">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="jsmartbotApp.item.type">Type</span></th>
+            <th><span jhiTranslate="jsmartbotApp.item.text">Text</span></th>
+            <th><span jhiTranslate="jsmartbotApp.item.createdAt">Created At</span></th>
+            <th><span jhiTranslate="jsmartbotApp.item.updatedAt">Updated At</span></th>
+            <th><span jhiTranslate="jsmartbotApp.item.first">First</span></th>
+            <th><span jhiTranslate="jsmartbotApp.item.nextItem">Next Item</span></th>
+            <th><span jhiTranslate="jsmartbotApp.item.parentItem">Parent Item</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of items ;trackBy: trackId">
+                <td><a [routerLink]="['../item-my-suffix', item.id ]">{{item.id}}</a></td>
+                <td jhiTranslate="{{'jsmartbotApp.Type.' + item.type}}">{{item.type}}</td>
+                <td>{{item.text}}</td>
+                <td>{{item.createdAt | date:'medium'}}</td>
+                <td>{{item.updatedAt | date:'medium'}}</td>
+                <td>{{item.first}}</td>
+                <td>
+                    <div *ngIf="item.nextItemId">
+                        <a [routerLink]="['../item-my-suffix', item.nextItemId  ]" >{{item.nextItemId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="item.parentItemId">
+                        <a [routerLink]="['../item-my-suffix', item.parentItemId  ]" >{{item.parentItemId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../item-my-suffix', item.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'item-my-suffix/'+ item.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'item-my-suffix/'+ item.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
